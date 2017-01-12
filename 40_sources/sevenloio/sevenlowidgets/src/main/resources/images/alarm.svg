@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="16"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   version="1.0"
+   sodipodi:docname="alarm.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/hombergp/netbeans_workspace/binaryio/src/resources/alarm.png"
+   inkscape:export-xdpi="72"
+   inkscape:export-ydpi="72">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="30.875"
+     inkscape:cx="8"
+     inkscape:cy="8"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     borderlayer="true"
+     showguides="false"
+     inkscape:window-width="927"
+     inkscape:window-height="719"
+     inkscape:window-x="170"
+     inkscape:window-y="53">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2383"
+       visible="true"
+       enabled="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 8,3 C 8,3 5.0763779,3.3905652 4,4 C 3.630805,4.2090344 3,5 3,5 C 3,5 3.926802,6.3331851 4,7 C 4.2699399,9.4590918 2,15 2,15 L 8,15 L 14,15 C 14,15 11.73006,9.4590918 12,7 C 12.073198,6.3331851 13,5 13,5 C 13,5 12.369195,4.2090344 12,4 C 10.923622,3.3905652 8,3 8,3 z"
+       id="path2403" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 7,3 C 6.5757359,2.5757359 6.5757359,1.4242641 7,1 C 7.4242641,0.57573593 8.5757359,0.57573593 9,1 C 9.4242641,1.4242641 9.4242641,2.5757359 9,3"
+       id="path2410"
+       sodipodi:nodetypes="czzz" />
+  </g>
+</svg>

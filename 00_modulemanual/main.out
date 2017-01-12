@@ -1,0 +1,30 @@
+\BOOKMARK [0][-]{chapter.1}{Module description}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Goal}{chapter.1}% 2
+\BOOKMARK [2][-]{subsection.1.1.1}{Goal in accordance with Dublin Descriptors}{section.1.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.2}{Explanation and content}{section.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.3}{Learning goals}{section.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.1.4}{Grading}{section.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.1.5}{Project hard- and software requirements}{section.1.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Requirements of an elevator system}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Functional requirements}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{Safety requirements}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.2}{Startup}{section.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.1.3}{Operation}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.4}{Shutdown}{section.2.1}% 13
+\BOOKMARK [1][-]{section.2.2}{Non functional requirements}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.3}{No requirement at all}{chapter.2}% 15
+\BOOKMARK [0][-]{chapter.3}{Control of the elevator hardware}{}% 16
+\BOOKMARK [1][-]{section.3.1}{The hardware elevator}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.2}{Input and outputs controlling the hardware model}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.3}{IO operations provided by the IO Warrior}{chapter.3}% 19
+\BOOKMARK [2][-]{subsection.3.3.1}{Bit operations}{section.3.3}% 20
+\BOOKMARK [2][-]{subsection.3.3.2}{Bit handling}{section.3.3}% 21
+\BOOKMARK [0][-]{chapter.4}{Graphical user interface}{}% 22
+\BOOKMARK [1][-]{section.4.1}{GUI features}{chapter.4}% 23
+\BOOKMARK [0][-]{chapter.5}{Execution of the project}{}% 24
+\BOOKMARK [1][-]{section.5.1}{Products}{chapter.5}% 25
+\BOOKMARK [2][-]{subsection.5.1.1}{How to deliver your assignment products}{section.5.1}% 26
+\BOOKMARK [1][-]{section.5.2}{Naming conventions}{chapter.5}% 27
+\BOOKMARK [2][-]{subsection.5.2.1}{Group repository}{section.5.2}% 28
+\BOOKMARK [1][-]{section.5.3}{Weekly planning}{chapter.5}% 29
+\BOOKMARK [1][-]{table.5.1}{Bibliography}{chapter.5}% 30

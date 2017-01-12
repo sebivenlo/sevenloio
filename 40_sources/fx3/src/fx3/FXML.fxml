@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="root" fx:id="root" prefHeight="800.0" prefWidth="250.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx3.FXMLController">
+    <children>
+        <GridPane fx:id="grid">
+           
+            <children>
+                <HBox id="floorIndicator" fx:id="floorindicator" prefHeight="22.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                </HBox>
+                <Pane fx:id="shaft" id="shaft" minHeight="-Infinity" prefHeight="800" prefWidth="200" 
+                      GridPane.columnIndex="0" 
+                      GridPane.hgrow="NEVER" GridPane.rowIndex="1" 
+                      GridPane.rowSpan="4" GridPane.vgrow="NEVER">
+                    <children>
+                        <Pane id="cage" fx:id="cage" layoutX="0.0" layoutY="0" prefHeight="122.0" prefWidth="250.0">
+                            <children>
+                                <Pane id="doorframe" fx:id="doorFrame" prefWidth="250.0">
+                                    <children>
+                                        <Pane id="lpanel" fx:id="lpanel" layoutX="0.0" layoutY="0" prefHeight="122.0" prefWidth="125.0" styleClass="door" />
+                                        <Pane id="rpanel" fx:id="rpanel" layoutX="0.0" layoutY="0" prefHeight="122.0" prefWidth="125.0" styleClass="door" />
+                                    </children>
+                                </Pane>
+                                <Label fx:id="obstructed" layoutY="125.0" mnemonicParsing="false" text="obstructed" />
+                                <Slider fx:id="doorslider" layoutX="0.0" max="1.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="0.0" />
+                                <ButtonBar layoutX="0.0" layoutY="140.0">
+                                    <buttons>
+                                        <Button fx:id="open" layoutX="0.0" mnemonicParsing="false" text="Open" />
+                                        <Button fx:id="close" mnemonicParsing="false" text="Close" />
+                                    </buttons>
+                                </ButtonBar>
+                            </children>
+                        </Pane>
+                    </children>
+                </Pane>
+                <VBox fx:id="f3pannel" GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="8" >
+                    <children>
+                        <Button text="DOWN" />
+                    </children>
+                </VBox>
+                <VBox fx:id="f2pannel" GridPane.columnIndex="1" GridPane.rowIndex="2" spacing="8">
+                    <children>
+                        <Button text="UP" />
+                        <Button text="DOWN" />
+                    </children>
+                </VBox>
+                <VBox fx:id="f1pannel" GridPane.columnIndex="1" GridPane.rowIndex="3" spacing="8">
+                    <children>
+                        <Button text="UP" />
+                        <Button text="DOWN" />
+                    </children>
+                </VBox>
+                <VBox fx:id="f0pannel" GridPane.columnIndex="1" GridPane.rowIndex="4" spacing="8">
+                    <children>
+                        <Button text="UP" />
+                    </children>
+                </VBox>
+            </children>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints percentHeight="100"/>
+            <RowConstraints percentHeight="100"/>
+            <RowConstraints percentHeight="100"/>
+            <RowConstraints percentHeight="100"/>
+            <RowConstraints percentHeight="100"/>
+            <RowConstraints percentHeight="100"/>
+         </rowConstraints>
+        </GridPane>
+        <Slider fx:id="cageslider" layoutX="2.0" layoutY="157.0" max="600.0" showTickLabels="true" showTickMarks="true" value="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,13 @@
+main.pdf :     styledefs.tex \
+	     pagesize.tex \
+	   frontpage.tex \
+	   history.tex \
+	   intro.tex \
+	   requirements.tex \
+	   hardware.tex \
+	     figures/doorsim.pdf \
+	     tables/logops.tex \
+	   gui.tex \
+	   weekplan.tex \
+	   colofon.tex 
+

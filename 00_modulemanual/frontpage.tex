@@ -1,0 +1,42 @@
+\providecommand\addresslines{Fontys Hogeschool voor Techniek en Logistiek\\
+      Hogere Informatica/ Software Engineering\\
+      Hulsterweg 2-6 Venlo\\
+      The Netherlands\\
+}
+\pagenumbering{roman}
+\AddToShipoutPicture*{\CoverBackgroundPic}
+\thispagestyle{empty}
+{
+\setlength{\unitlength}{1mm}
+\begin{picture}(0,0)(25,270)
+\put(25,15){\begin{minipage}[b]{\textwidth}
+    \parindent=0in\raggedright
+    {\large \sffamily\bfseries\color{fontys}
+      \addresslines
+    }
+  \end{minipage}}
+\end{picture}
+}
+\begin{center}
+  \vspace*{.1\paperwidth}
+\begin{minipage}[b]{\textwidth}
+\parindent=0in\raggedleft
+{\Huge \bf \sf \makeatletter\@title\makeatother}
+
+\noindent{\Large\sffamily Reactive systems and patterns applied}
+\vspace*{.025\paperwidth}
+
+\noindent{\large\makeatletter\@author\makeatletter}
+
+\vspace*{.025\paperwidth}
+\includegraphics[height=.75\paperwidth]{figures/elevator_zep.jpg}
+\end{minipage}
+\end{center}
+%empty backside of frontpage
+\pagestyle{empty}
+\cleardoublepage
+\setcounter{page}{1}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 

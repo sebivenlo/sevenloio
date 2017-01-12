@@ -1,0 +1,50 @@
+
+#root {
+    -fx-base:black;
+    -fx-background-image : url(waterfall.jpg);
+    
+    -fx-background-size:contain;
+}
+#shaft{
+    -fx-background-color:#666;
+    
+    
+}
+VBox{
+    -fx-background-color: gray;
+    -fx-border-color: white;
+}
+#cage {
+    -fx-border-color: yellow;   
+}
+#doorframe{
+    -fx-border-color:red;
+}
+#label1{
+    -fx-text-fill: yellow;
+    -fx-font-family: "Arial Black";
+}
+#lpanel{}
+#rpanel{}
+
+.on {
+    -fx-base: yellow;
+}
+.obstructed{
+    -fx-base: yellow;
+}
+.indicator{
+    -fx-background-color: white;
+    
+}
+.inidcatorlabel{
+    -fx-text-fill: black;
+    -fx-font-size:14pt;
+}
+.door{
+    -fx-background-color: rgba(128,128,128,0.4);
+    -fx-background-image :url(picture.png);
+    -fx-border-width:1px;
+
+    -fx-border-color: black;
+}
