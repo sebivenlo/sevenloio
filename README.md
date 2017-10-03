@@ -7,5 +7,5 @@ The code is use at the "Fontys Hogeschool voor Techniek" en Logistiek in Venlo i
 
 To have any benefit from these, other then sample code, you would have a an iowarrior to control some hardware via IO.
 
-The library is extensively documented. Pre-built binaries are currently hoste at htts://www.fontysvenlo/repository.
+The library is extensively documented. Pre-built binaries are currently hosted at https://www.fontysvenlo/repository.
 

@@ -49,8 +49,8 @@ public abstract class NetIOConnector implements IO {
     public NetIOConnector(String netAddress, int port) {
         this.netAddress = netAddress;
         this.port = port;
-        this.outQ = new LinkedBlockingQueue<Integer>(QUEUE_CAPACITY);
-        this.inQ = new LinkedBlockingQueue<Integer>(QUEUE_CAPACITY);
+        this.outQ = new LinkedBlockingQueue<>(QUEUE_CAPACITY);
+        this.inQ = new LinkedBlockingQueue<>(QUEUE_CAPACITY);
     }
 
     /**
@@ -147,6 +147,7 @@ public abstract class NetIOConnector implements IO {
         /**
          * Does the dequeuing and writing.
          */
+        @Override
         public void run() {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
