@@ -5,7 +5,7 @@ package nl.fontys.sevenlo.hwio;
  * constructors which can be used for the most common cases.
  *
  * The BitAggregate allows access to all input and output bits.
- * <br/>
+ * <br>
  * <h2>Usage output</h2>
  * For a application layer the SimpleBitAggregate provides the functionality of
  * individually settable output bits. The application cloud/should get the
@@ -15,7 +15,7 @@ package nl.fontys.sevenlo.hwio;
  * Bit lampA = ba.getBit(LAMPABIT);<br>
  * . <br>
  * . <br>
- * lampA.set(); // turn lampA on <br/>
+ * lampA.set(); // turn lampA on <br>
  * </pre>
  * <br>
  * <h2>Usage input</h2>

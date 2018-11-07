@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.8)  12 JAN 2017 19:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.28)  3 OCT 2017 16:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1629,12 +1629,7 @@ Package pdftex.def Info: figures/fon000_00c.pdf used on input line 86.
 ]
 \openout2 = `colofon.aux'.
 
-(./colofon.tex
-
-Package lineno Warning: Linenumber reference failed, 
-(lineno)                rerun to get it right.
-
-)
+(./colofon.tex)
 File: figures/fon000_00c.pdf Graphic file (type pdf)
 <use figures/fon000_00c.pdf>
 Package pdftex.def Info: figures/fon000_00c.pdf used on input line 86.
@@ -1687,8 +1682,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 87.
  ) 
 Here is how much of TeX's memory you used:
  12854 strings out of 493029
- 181582 string characters out of 6136235
- 454584 words of memory out of 5000000
+ 181582 string characters out of 6136234
+ 454580 words of memory out of 5000000
  15873 multiletter control sequences out of 15000+600000
  51336 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1705,7 +1700,7 @@ xlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
 /utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (36 pages, 1926019 bytes).
+Output written on main.pdf (36 pages, 1926017 bytes).
 PDF statistics:
  1039 PDF objects out of 1200 (max. 8388607)
  804 compressed objects within 9 object streams

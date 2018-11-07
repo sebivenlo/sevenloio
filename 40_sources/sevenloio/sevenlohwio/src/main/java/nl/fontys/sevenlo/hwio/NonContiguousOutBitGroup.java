@@ -5,12 +5,12 @@ import java.util.Arrays;
 /**
  * Output bit group.
  * Purpose of a bitgroup to transfer more bits in one call, in particular if
- * the combination of the bits controls one device.<br/>
+ * the combination of the bits controls one device.<br>
  *
- * Uses an Output to do the actual io.<br/>
+ * Uses an Output to do the actual io.<br>
  *
  * This variant is optimized for use cases where the bits in the group are
- * not contiguous in the output port.<br/>
+ * not contiguous in the output port.<br>
  *
  * The bits in passed in the constructor or in the factory method
  * <code>createFromBits</code> are sorted before use.
