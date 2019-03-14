@@ -185,12 +185,12 @@ public final class ResourceUtils {
         for ( int i = 0; i < pinCount; i++ ) {
             String pinName = "pin" + i;
             String propValue = props.getProperty( pinName );
-            System.out.print( pinName + "=" + propValue );
+//            System.out.print( pinName + "=" + propValue );
             if ( null != propValue && propValue.startsWith( "in" ) ) {
                 im |= mask;
-                System.out.println( " in" );
+//                System.out.println( " in" );
             } else {
-                System.out.println( " out" );
+//                System.out.println( " out" );
             }
             mask <<= 1;
         }

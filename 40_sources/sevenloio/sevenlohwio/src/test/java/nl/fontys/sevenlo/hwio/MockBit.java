@@ -15,6 +15,10 @@ public class MockBit extends Bit {
     private static int serialNr = 0;
     final int id = serialNr++;
 
+    public MockBit(  ) {
+        super( 0);
+    }
+
     @Override
     public void set(boolean b) {
         value = b;

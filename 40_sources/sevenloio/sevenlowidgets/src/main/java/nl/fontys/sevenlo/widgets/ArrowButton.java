@@ -6,6 +6,7 @@ package nl.fontys.sevenlo.widgets;
  * @version $Id$
  */
 public class ArrowButton extends ShapeButton {
+
     private static final long serialVersionUID = 1L;
     /**
      * Point direction.

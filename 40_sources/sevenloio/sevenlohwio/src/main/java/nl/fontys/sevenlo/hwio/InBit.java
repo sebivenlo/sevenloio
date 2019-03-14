@@ -14,19 +14,7 @@ public class InBit extends Bit {
      * last value cache.
      */
     private boolean value = false;
-    /**
-     * The identifier.
-     */
-    private final int bitNr;
 
-    /**
-     * Return bit id.
-     *
-     * @return the bit number passed in at construction time.
-     */
-    public int getBitNr() {
-        return bitNr;
-    }
 
     /**
      * Bit with id.
@@ -34,7 +22,7 @@ public class InBit extends Bit {
      * @param bnr the bit number id.
      */
     public InBit( int bnr ) {
-        this.bitNr = bnr;
+        super(bnr);
     }
 
     /**
@@ -65,7 +53,6 @@ public class InBit extends Bit {
      *
      * @return the string.
      */
-    @Override
     public String getName() {
         return getClass().getSimpleName() + bitNr;
     }

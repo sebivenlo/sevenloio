@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class InputBitTest {
 
     private MockIO mio;
-    private BitOps bit;
+    private Bit bit;
 
     public InputBitTest() {
     }
@@ -62,13 +62,13 @@ public class InputBitTest {
 
             boolean v = false;
 
-            public void updateBit(Object b, boolean newValue) {
+            public void updateBit(Bit b, boolean newValue) {
                 v = newValue;
             }
         }
 
         BitListenerStub bls = new BitListenerStub();
-        ((BitSubject)bit).addListener(bls);
+        bit.addListener(bls);
         mio.write(1);
         assertTrue(bls.v);
         mio.write(0);

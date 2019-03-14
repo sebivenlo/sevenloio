@@ -2,6 +2,7 @@ package nl.fontys.sevenlo.hwio;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 
 /**
  * Inverter of IO bits: one sides input is the other output. This adapter class
@@ -14,10 +15,10 @@ import java.util.logging.Logger;
  *
  * @author Pieter van den Hombergh (p.vandenhombergh@fontys.nl)
  */
-public class IOInverter {
+public class IOInverter implements BitAggregate<Integer> {
 
-    private final PassThroughAggregate insideAggregate;
-    private final PassThroughAggregate outsideAggregate;
+    private PassThroughAggregate insideAggregate;
+    private PassThroughAggregate outsideAggregate;
     private final Object leftLock = new Object();
     private final Object rightLock = new Object();
 
@@ -25,11 +26,67 @@ public class IOInverter {
      * Create Inverter with BitFactory.
      * @param inputMask mask
      */
-    public IOInverter(int inputMask) {
-        insideAggregate = new PassThroughAggregate(inputMask, true);
-        outsideAggregate = new PassThroughAggregate(~inputMask, false);
-        insideAggregate.setOther(outsideAggregate);
-        outsideAggregate.setOther(insideAggregate);
+    public IOInverter( int inputMask ) {
+        insideAggregate = new PassThroughAggregate( inputMask, true );
+        outsideAggregate = new PassThroughAggregate( ~inputMask, false );
+        insideAggregate.setOther( outsideAggregate );
+        outsideAggregate.setOther( insideAggregate );
+        insideAggregate.setPoller( new FXPoller(outsideAggregate));
+        outsideAggregate.setPoller( new FXPoller(insideAggregate));
+    }
+
+    @Override
+    public BitOps getBit( int i ) {
+        return insideAggregate.getBit( i );
+    }
+
+    @Override
+    public int size() {
+        return insideAggregate.size();
+    }
+
+    @Override
+    public Integer getInputMask() {
+        return insideAggregate.getInputMask();
+    }
+
+    @Override
+    public Integer lastRead() {
+        return insideAggregate.lastRead();
+    }
+
+    @Override
+    public void connect() {
+        insideAggregate.connect();
+    }
+
+    @Override
+    public String toString() {
+        return insideAggregate.toString();
+    }
+
+    @Override
+    public void connect( Bit aBit ) {
+        insideAggregate.connect( aBit );
+    }
+
+    @Override
+    public void writeMasked( int mask, int value ) {
+        insideAggregate.writeMasked( mask, value );
+    }
+
+    @Override
+    public int read() {
+        return insideAggregate.read();
+    }
+
+    @Override
+    public int lastWritten() {
+        return insideAggregate.lastWritten();
+    }
+
+    public void setOther( PassThroughAggregate o ) {
+        insideAggregate.setOther( o );
     }
 
 //    /**
@@ -39,30 +96,28 @@ public class IOInverter {
 //    public IOInverter(int inputMask) {
 //        this(inputMask, new DefaultBitFactory());
 //    }
-
     /**
      * @author Pieter van den Hombergh (p.vandenhombergh@fontys.nl)
      */
-    private class PassThroughAggregate implements IO {
+    private class PassThroughAggregate extends SimpleBitAggregate implements IO {
 
         private final Object myLock;
         private final Object otherLock;
         private PassThroughAggregate other;
-        private final int inputMask;
         private int lastWritten = 0;
         private int lastRead = 0;
-        private final Bit[] bit;
         private AbstractBitFactory fac;
+        private FXPoller poller;
 
         /**
          * Create PassThroughAggregate with BitFactory.
-         * @param im inputMask
+         * @param im  inputMask
          * @param fac BitFactory
          */
-        PassThroughAggregate(int im, boolean left) {
-            this.inputMask = im;
+        PassThroughAggregate( int im, boolean left ) {
+            super( im );
 
-            if (left) {
+            if ( left ) {
                 myLock = leftLock;
                 otherLock = rightLock;
 
@@ -71,14 +126,16 @@ public class IOInverter {
                 otherLock = leftLock;
 
             }
-            bit = new Bit[32];
         }
 
-        /**
+        void setPoller(FXPoller poller) {
+            
+        }/**
          * Set connection to other.
          * @param o
          */
-        public void setOther(PassThroughAggregate o) {
+
+        public void setOther( PassThroughAggregate o ) {
             other = o;
         }
 
@@ -88,12 +145,15 @@ public class IOInverter {
          * @param value
          */
         @Override
-        public void writeMasked(int mask, int value) {
-            lastWritten = (lastWritten & ~mask) | (mask & value);
+        public void writeMasked( int mask, int value ) {
+            lastWritten = ( lastWritten & ~mask ) | ( mask & value );
             //The field below is set before this lock is used.
-            synchronized (otherLock) {
+            synchronized ( otherLock ) {
                 otherLock.notifyAll();
             }
+//            if ( null != poller ) {
+//                Platform.runLater( () -> poller.pollOnce() );
+//            }
         }
 
         /**
@@ -102,12 +162,12 @@ public class IOInverter {
          */
         @Override
         public int read() {
-            synchronized (myLock) {
+            synchronized ( myLock ) {
                 try {
                     myLock.wait();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(IOInverter.class
-                            .getName()).log(Level.SEVERE, null, ex);
+                } catch ( InterruptedException ex ) {
+                    Logger.getLogger( IOInverter.class
+                            .getName() ).log( Level.SEVERE, null, ex );
                 }
             }
             return other.lastWritten();
@@ -124,7 +184,7 @@ public class IOInverter {
      * Get the inside aggregate. This has the same setup as a normal aggregate.
      * @return BitAggregate
      */
-    public  IO getInside() {
+    public BitAggregate<Integer> getInside() {
         return insideAggregate;
     }
 
@@ -133,7 +193,7 @@ public class IOInverter {
      * hardware simulation.
      * @return the outside aggregate
      */
-    public IO getOutside() {
+    public BitAggregate<Integer> getOutside() {
         return outsideAggregate;
     }
 }

@@ -58,4 +58,23 @@ public interface BitAggregate<X extends Number> extends IO {
      * @throws IllegalStateException when not ready for connect.
      */
     void connect() throws IllegalStateException;
+
+    /**
+     * Connect a bit at a time.
+     * Connect the bits after the aggregate is created.
+     *
+     * @param bit to be connected.
+     * @throws IllegalArgumentException when the bit is not compatible with the input mask of the
+     *                                  aggregate.
+     */
+    void connect( Bit bit );
+    
+    default String asString(){
+        StringBuilder result=new StringBuilder("[\n");
+        for ( int i = 0, n=this.size(); i < n; i++ ) {
+            result.append("\t").append(this.getBit( i )).append("\n");
+        }
+        result.append("]");
+        return result.toString();
+    }
 }

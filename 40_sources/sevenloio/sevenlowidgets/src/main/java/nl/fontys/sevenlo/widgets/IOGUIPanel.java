@@ -18,6 +18,7 @@ import nl.fontys.sevenlo.hwio.BitAggregate;
  * A test case for the hwio io package. The application can be used with and
  * without an iowarrior.
  *
+ *
  * @author Pieter van den Hombergh (P dot vandenHombergh at fontys dot nl)
  * @version $Id$
  */

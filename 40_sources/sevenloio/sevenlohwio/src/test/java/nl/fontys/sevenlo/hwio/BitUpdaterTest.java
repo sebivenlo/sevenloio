@@ -17,7 +17,7 @@ import static nl.fontys.sevenlo.hwio.BitUpdater.updateLongBits;
 /**
  * Test class for bit updater.
  * @author Pieter van den Hombergh (p.vandenhombergh at fontys dot nl )
-
+ *
  */
 public class BitUpdaterTest {
 
@@ -142,7 +142,7 @@ public class BitUpdaterTest {
 
         @Override
         public void connect() throws IllegalStateException {
-            throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
+            
         }
 
         @Override
@@ -159,12 +159,21 @@ public class BitUpdaterTest {
         public int read() {
             throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
         }
+
+        @Override
+        public void connect( Bit bit ) {
+            throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
+        }
     }
 
     static class CountingBit extends Bit {
 
         int count = 0;
         boolean value = false;
+
+        public CountingBit() {
+            super( 0 );
+        }
 
         @Override
         public boolean isSet() {

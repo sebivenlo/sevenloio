@@ -193,7 +193,9 @@ public final class IOWarriorConnector {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append( "Found " ).append( handles.length ).append( " IOWarriors\n" );
+        sb.append( "Found " ).append( handles.length ).append( " IOWarrior")
+                .append( handles.length>1?"s":"" )
+                .append("\n" );
         int j = 0;
         for ( Long handle : handles ) {
             sb.append( ++j ).append( " - " )
@@ -208,5 +210,11 @@ public final class IOWarriorConnector {
                     .append( "\n" );
         }
         return sb.toString();
+    }
+
+    public void close() {
+        for ( long h : handles ) {
+            IowKit.closeDevice( h );
+        }
     }
 }

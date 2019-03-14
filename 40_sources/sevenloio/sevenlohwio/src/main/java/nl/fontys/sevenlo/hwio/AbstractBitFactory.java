@@ -8,22 +8,22 @@ package nl.fontys.sevenlo.hwio;
  *
  * @author Pieter van den Hombergh (p.vandenHombergh at fontys dot nl)
  */
-public interface AbstractBitFactory {
+public interface AbstractBitFactory<X extends Number> {
 
     /**
      * Create an INputBit.
-     * @param port the output to use
+     * @param bag the bit aggregate to use
      * @param bitNr nth bit position counted from the right.
      * @return new input bit
      */
-    BitOps createInputBit(Input port, int bitNr);
+    Bit createInputBit(BitAggregate<X> bag, int bitNr);
 
     /**
      * Create an output bit.
      *
-     * @param port the output to use
+     * @param bag  the big aggregate output to use
      * @param bitNr nth bit position counted from the right.
      * @return new output bit
      */
-    BitOps createOutputBit(Output port, int bitNr );
+    Bit createOutputBit(BitAggregate<X> bag, int bitNr );
 }

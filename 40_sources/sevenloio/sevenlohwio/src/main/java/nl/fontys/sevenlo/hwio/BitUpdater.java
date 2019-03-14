@@ -6,7 +6,7 @@ package nl.fontys.sevenlo.hwio;
  *
  * @author Pieter van den Hombergh (P dot vandenHombergh at fontys dot nl)
  */
-public interface BitUpdater {
+public final class BitUpdater {
 
     /**
      * Utility method to update the bits in an aggregate.
@@ -64,4 +64,10 @@ public interface BitUpdater {
         }
     }
 
+    /**
+     * private constructor to prevent instantiation of utility class with only
+     * static methods and no members.
+     */
+    private BitUpdater() {
+    }
 }

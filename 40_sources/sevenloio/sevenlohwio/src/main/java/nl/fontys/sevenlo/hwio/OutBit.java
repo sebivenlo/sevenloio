@@ -1,5 +1,7 @@
 package nl.fontys.sevenlo.hwio;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 /**
  * Output Bitwise with value read-back.
  *
@@ -7,19 +9,6 @@ package nl.fontys.sevenlo.hwio;
  */
 public class OutBit extends Bit {
 
-    /**
-     * The bit number.
-     */
-    private final int bitNr;
-
-    /**
-     * Get the bitnr.
-     *
-     * @return the bitnr.
-     */
-    public int getBitNr() {
-        return bitNr;
-    }
     /**
      * Mask for isolated bit updates.
      */
@@ -45,24 +34,24 @@ public class OutBit extends Bit {
     /**
      * Outbit on port on bitnr position.
      *
-     * @param port  output to use.
+     * @param port output to use.
      * @param bitNr position of bit.
      */
     public OutBit( Output port, int bitNr ) {
+        super(bitNr);
         writer = port;
-        this.bitNr = bitNr;
         mask = 1 << bitNr;
     }
 
     /**
-     * Set the bit to value and output to hardware.
+     * Set th bit to value.
      *
      * @param b new value
      */
     @Override
     public void set( boolean b ) {
         value = b;
-        writer.writeMasked( mask, value ? ~0 : 0 );
+        writer.writeMasked( mask, b ? ~0 : 0 );
         updateListeners( this, value );
     }
 

@@ -1,6 +1,8 @@
 package nl.fontys.sevenlo.iowarrior;
 
 import com.codemercs.iow.IowKit;
+import java.util.Arrays;
+import static java.util.stream.Collectors.joining;
 import nl.fontys.sevenlo.hwio.AbstractBitFactory;
 import nl.fontys.sevenlo.hwio.BitAggregate;
 import nl.fontys.sevenlo.hwio.Bit;
@@ -63,7 +65,7 @@ public final class IOWarrior implements BitAggregate<Integer> {
     /**
      * The connected bits.
      */
-    private final BitOps[] bit;
+    private final Bit[] bit;
     /**
      * THe number of bits supported per warrior.
      */
@@ -75,8 +77,8 @@ public final class IOWarrior implements BitAggregate<Integer> {
      * Create an IoWarrior connection instance and uses a BitFactory to create
      * the IO Bits.
      *
-     * @param hnd handle to identify device to library
-     * @param im inputMask
+     * @param hnd  handle to identify device to library
+     * @param im   inputMask
      * @param fact BitFactory
      */
     public IOWarrior( final long hnd, final int im,
@@ -92,7 +94,7 @@ public final class IOWarrior implements BitAggregate<Integer> {
      * Create an IoWarrior connection instance with default Bit instances.
      *
      * @param hnd handle to identify device to library
-     * @param im inputMask
+     * @param im  inputMask
      */
     public IOWarrior( final long hnd, final int im ) {
         this( hnd, im, new DefaultBitFactory() );
@@ -109,6 +111,7 @@ public final class IOWarrior implements BitAggregate<Integer> {
      */
     @Override
     public int read() {
+
         int[] rdata = IowKit.read( handle, 0, WARRIOR_BUF_SIZE );
         int result = 0;
         if ( rdata.length > 0 ) {
@@ -162,7 +165,7 @@ public final class IOWarrior implements BitAggregate<Integer> {
      * WriteMasked as defined in the api of intwriter. This version does all the
      * work and is threadsafe.
      *
-     * @param mask the bits that should be kept safe.
+     * @param mask  the bits that should be kept safe.
      * @param value the 'set' of value bits.
      */
     @Override
@@ -198,6 +201,7 @@ public final class IOWarrior implements BitAggregate<Integer> {
      * Get a bit through its number.
      *
      * @param i the bit number
+     *
      * @return the bit
      */
     @Override
@@ -212,9 +216,18 @@ public final class IOWarrior implements BitAggregate<Integer> {
      */
     @Override
     public String toString() {
-        return IOWarriorConnector.getInstance().getSerialNr( handle )
-                + " im=" + inputMask + " read=" + lastRead
-                + " shadow=" + shadow;
+        return "IOWarrior "
+                + IOWarriorConnector.getInstance().getSerialNr( handle );//+Arrays.toString( bit);
+//                + " im=" + inputMask + " read=" + lastRead
+//                + " shadow=" + shadow;
+    }
+
+    public String asString() {
+        return this.toString()+", bits: [\n"
+                + Arrays.stream( bit )
+                        .map( b -> "\t" + b.toString() )
+                        .collect( joining( ",\n" ) )
+                + "\n]";
     }
 
     /**
@@ -269,14 +282,13 @@ public final class IOWarrior implements BitAggregate<Integer> {
     @Override
     public void connect() {
         for ( int i = 0; i < bit.length; i++ ) {
-//            if ( null != bit[ i ] ) {
-//                throw new IllegalStateException( " bit " + i
-//                        + " already connected" );
-//            }
-            if ( ( inputMask & ( 1 << i ) ) != 0 ) {
-                bit[ i ] = fact.createInputBit( this, i );
-            } else {
-                bit[ i ] = fact.createOutputBit( this, i );
+            if ( null == bit[ i ] ) {
+                if ( ( inputMask & ( 1 << i ) ) != 0 ) {
+                    bit[ i ] = fact.createInputBit( this, i );
+                } else {
+                    bit[ i ] = fact.createOutputBit( this, i );
+                }
+                System.out.println( "created bit[i] = " + bit[ i ] );
             }
         }
 
@@ -286,4 +298,28 @@ public final class IOWarrior implements BitAggregate<Integer> {
     public String getSerialNumber() {
         return IOWarriorConnector.getSerialNumber( handle );
     }
+
+    /**
+     * Connect a bit at a time.
+     * Connect the bits after the aggregate is created. If this bit replaces
+     * another non-null bit, that bits listeners are attached to the aBit.
+     *
+     * @param aBit bit to be connected.
+     *
+     * @throws IllegalArgumentException when the bit is not compatible with the
+     *                                  input mask of the
+     *                                  aggregate.
+     */
+    @Override
+    public void connect( Bit aBit ) {
+        int pos = aBit.getBitNr();
+
+        if ( null != bit[ pos ] ) {
+            aBit.getListeners().addAll( bit[ pos ].getListeners() );
+            bit[ pos ].removeAllListeners();
+        }
+        bit[ pos ] = aBit;
+        System.out.println( "connected bit  = " + bit[ pos ] );
+    }
+
 }

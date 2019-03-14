@@ -27,6 +27,11 @@ public final class PollThreads {
      */
     private static ArrayList<Thread> pollThreads = new ArrayList<Thread>();
 
+    {
+        Runnable closeTask = () -> PollThreads.close();
+        Runtime.getRuntime().addShutdownHook( new Thread( closeTask ) );
+    }
+
     /**
      * create a pollThread. This thread depends on the blocking property of the
      * read operation of the IOWarrior. This ensures that a read only commences
@@ -38,7 +43,9 @@ public final class PollThreads {
     public static Thread createPollThread( final Poller poller ) {
         // create poller thread
         Thread pThread = new Thread( "PollThread" + pollThreadId++ ) {
-
+            {
+                setDaemon( true );
+            }
             private volatile int counter = 0;
 
             @Override
@@ -54,6 +61,12 @@ public final class PollThreads {
                 super.start();
                 System.out.println( "PollThread " + getName() + " started" );
             }
+
+            @Override
+            public String toString() {
+                return super.toString()+"{" + "counter=" + counter + '}';
+            }
+            
         };
         pollThreads.add( pThread );
         return pThread;
@@ -62,7 +75,7 @@ public final class PollThreads {
     /**
      * Closed and free device.
      */
-    private void close() {
+    public static void close() {
         for ( Thread t : pollThreads ) {
             try {
                 t.interrupt();

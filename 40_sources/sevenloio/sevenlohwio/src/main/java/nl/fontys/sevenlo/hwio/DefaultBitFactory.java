@@ -5,29 +5,31 @@ package nl.fontys.sevenlo.hwio;
  *
  * @author Pieter van den Hombergh (P dot vandenHombergh at fontys dot nl)
  */
-public class DefaultBitFactory implements AbstractBitFactory {
+public class DefaultBitFactory<X extends Number> implements AbstractBitFactory<X> {
 
     /**
-     * Create an input bit at a specify position.
+     * Create an input bit at a specify position and connect it to the given bit aggregate.
      *
-     * @param port associated port
+     * @param bag  associated port (Bit aggregate)
      * @param bitNr the position
      * @return new Input bit
      */
     @Override
-    public Bit createInputBit( Input port, int bitNr ) {
-        return new InBit( bitNr );
+    public Bit createInputBit( BitAggregate<X> bag, int bitNr ) {
+        InBit result = new InBit( bitNr );
+        bag.connect( result );
+        return result;
     }
 
     /**
      * Create an output bit at a specified position.
      *
-     * @param port the output to use
+     * @param bag  the output to use
      * @param bitNr the position
      * @return new Output bit
      */
     @Override
-    public Bit createOutputBit( Output port, int bitNr ) {
-        return new OutBit( port, bitNr );
+    public Bit createOutputBit( BitAggregate<X> bag, int bitNr ) {
+        return new OutBit( bag, bitNr );
     }
 }

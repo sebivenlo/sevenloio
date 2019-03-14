@@ -21,9 +21,9 @@ package nl.fontys.sevenlo.hwio;
  * <h2>Usage input</h2>
  * Input would typically use a Listener model. The logic should implement the
  * BitListener interface and connect that Listener to the appropriate bits.
- *<pre class='brush:java'>
+ * <pre class='brush:java'>
  * BitListener buttonLogic = new ....
- * ba.addListener(buttonLogic);  
+ * ba.addListener(buttonLogic);
  * </pre>
  *
  *
@@ -38,7 +38,7 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
     public static final int SUPPORTED_BITS = Integer.SIZE;
 
     private final int inputMask;
-    private final BitOps[] bit;
+    private final Bit[] bit;
     private int shadow;
     private int lastRead; // cached value, non blocking
     private Output output;
@@ -50,9 +50,9 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
      * Bitmask parameters. Use this version if you want to roll your own bits.
      *
      * @param bitFactory the factory to create input and output bits
-     * @param out the writer implementor
-     * @param in the reader implementor
-     * @param ipm the inputmask
+     * @param out        the writer implementor
+     * @param in         the reader implementor
+     * @param ipm        the inputmask
      */
     public SimpleBitAggregate( AbstractBitFactory bitFactory, Output out,
             Input in, int ipm ) {
@@ -69,7 +69,7 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
      * objects (or classes).
      *
      * @param out the writer implementor
-     * @param in the reader implementor
+     * @param in  the reader implementor
      * @param ipm the input mask
      */
     public SimpleBitAggregate( Output out, Input in, int ipm ) {
@@ -81,7 +81,7 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
      *
      * Typical example is the IOWarrior which provides Bit IO in one object.
      *
-     * @param io the writer and reader implementing object
+     * @param io  the writer and reader implementing object
      * @param ipm inputMask
      */
     public SimpleBitAggregate( IO io, int ipm ) {
@@ -118,6 +118,7 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
      * Access to the Bit through its number.
      *
      * @param i the bit number
+     *
      * @return the requested bit
      */
     @Override
@@ -148,7 +149,7 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
     /**
      * Write a value using the writer.
      *
-     * @param mask determines which bit affect the output.
+     * @param mask  determines which bit affect the output.
      * @param value determines the values of the affected bits.
      */
     @Override
@@ -186,21 +187,79 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
      * Non blocking read.
      *
      * @return the last value produced by a blocking read. Note taht this value
-     * may be stale.
+     *         may be stale.
      */
     @Override
     public Integer lastRead() {
         return lastRead;
     }
 
+    /**
+     * Connect a listener to a bit.
+     *
+     * @param bitNr the bit number to connect to.
+     * @param l     the listener to add
+     */
+    public void addBitListener( int bitNr, BitListener l ) {
+        BitOps bo = getBit( bitNr );
+        if ( bo instanceof Bit ) {
+            Bit bit = ( Bit ) bo;
+            bit.addListener( l );
+        }
+    }
+
+    /**
+     * Remove a listener to a bit.
+     *
+     * @param bitNr the bit number to remove from.
+     * @param l     the listener to remove
+     */
+    public void removeBitListener( int bitNr, BitListener l ) {
+        BitOps bo = getBit( bitNr );
+        if ( bo instanceof Bit ) {
+            Bit bit = ( Bit ) bo;
+            bit.removeListener( l );
+        }
+    }
+
     @Override
     public void connect() {
         for ( int i = 0; i < bit.length; i++ ) {
             if ( ( ( 1 << i ) & inputMask ) != 0 ) {
-                bit[ i ] = bitFactory.createInputBit( input, i );
+                bit[ i ] = ( Bit ) bitFactory.createInputBit( this, i );
             } else {
-                bit[ i ] = bitFactory.createOutputBit( this, i );
+                bit[ i ] = ( Bit ) bitFactory.createOutputBit( this, i );
             }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "SimpleBitAggregate{" + Integer.toHexString( inputMask) + '}';
+    }
+
+    /**
+     * Connect a bit to this aggregate.
+     * The argument is is tested for compatibility to its position, according to
+     * the inputmask for
+     * the aggregate.
+     *
+     * @param aBit to connect
+     */
+    @Override
+    public void connect( Bit aBit ) {
+        int pos = aBit.getBitNr();
+        boolean isInput = ( inputMask & ( 1 << pos ) ) != 0;
+        if ( !isInput && aBit instanceof OutBit ) {
+            if ( null != bit[ pos ] ) {
+                aBit.addAllListener( bit[pos].getListeners() );
+            }
+            bit[ pos ] = aBit;
+        } else if ( isInput && aBit instanceof InBit ) {
+            bit[ pos ] = aBit;
+        } else {
+            throw new IllegalArgumentException( "type of " + aBit
+                    + " not according to bitmask or position" );
         }
     }
 }

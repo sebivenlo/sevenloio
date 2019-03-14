@@ -18,6 +18,14 @@ public abstract class Bit implements BitOps, BitSubject {
      * The serial number each bit from the factory receives.
      */
     protected final int bitSerialNumber = ++bitSerialNumberSequence;
+    /**
+     * The identifier.
+     */
+    protected final int bitNr;
+
+    public Bit( int bitNr ) {
+        this.bitNr = bitNr;
+    }
 
     /**
      * Returns the serial number of a bit. Generation of bits is maintained
@@ -77,21 +85,6 @@ public abstract class Bit implements BitOps, BitSubject {
     }
 
     /**
-     * Update my listeners. Typical usage is to pass this as the Object in a
-     * subclass, which then can be inspected by the callee to get more info then
-     * just the bit value.
-     *
-     * @param bo bit object
-     * @param newValue newest value
-     */
-    //@SuppressWarnings("unchecked")
-    protected void updateListeners( Object bo, boolean newValue ) {
-        listeners.forEach( ( bl ) -> {
-            bl.updateBit( bo, newValue );
-        } );
-    }
-
-    /**
      * Return simple class name plus value.
      *
      * @return string representation
@@ -101,4 +94,22 @@ public abstract class Bit implements BitOps, BitSubject {
         return getName()
                 + " [serial #" + getBitSerialNumber() + "]=" + isSet();
     }
+
+    /**
+     * Return bit id.
+     *
+     * @return the bit number passed in at construction time.
+     */
+    public int getBitNr() {
+        return bitNr;
+    }
+
+    public CopyOnWriteArrayList<BitListener> getListeners() {
+        return listeners;
+    }
+
+    void addAllListener( CopyOnWriteArrayList<BitListener> listeners ) {
+        getListeners().addAll( listeners );
+    }
+
 }

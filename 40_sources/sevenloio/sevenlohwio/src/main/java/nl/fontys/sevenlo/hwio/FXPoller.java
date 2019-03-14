@@ -34,6 +34,7 @@ public class FXPoller implements Poller {
         }
         lastValue = 0;
         bitA = b;
+        System.out.println( "created poller for " + bitA );
     }
 
     /**
@@ -52,12 +53,13 @@ public class FXPoller implements Poller {
             }
         }
         if ( myTask != null ) {
+           // System.out.println( "submittted " + Integer.toHexString( newValue ) + " for " + bitA );
             Platform.runLater( myTask );
         }
     }
 
     /**
-     * Task to do the listener updates (bit[].set(b)) on the FX UI thread.
+     * Task to do the listener updates (bit[].set(b)) on the swing UI thread.
      */
     // @Immutable
     public static class UpdateTask implements Runnable {

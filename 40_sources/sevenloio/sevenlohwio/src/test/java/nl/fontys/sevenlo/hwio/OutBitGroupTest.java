@@ -68,6 +68,36 @@ public class OutBitGroupTest {
         int result = instance.offset();
         assertEquals(expResult, result);
     }
+    
+    @Test 
+    public void testStaticFactory(){
+        Output mo = new MockOutput();
+        OutBit[] ob = {new OutBit(mo,1),new OutBit(mo,2),new OutBit(mo,3)};
+        OutBitGroup obg = OutBitGroup.from( ob );
+        assertEquals(1,obg.offset());
+        assertEquals(3,obg.size());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testStaticFactory2(){
+        Output mo = new MockOutput();
+        OutBit[] ob = {new OutBit(mo,1),new OutBit(mo,3),new OutBit(mo,4)};
+        OutBitGroup obg = OutBitGroup.from( ob );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testStaticFactory3(){
+        Output mo = new MockOutput();
+        OutBit[] ob = {new OutBit(mo,1),new OutBit(new MockOutput(),2),new OutBit(mo,3)};
+        OutBitGroup obg = OutBitGroup.from( ob );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testStaticFactoryEmpty(){
+        Output mo = new MockOutput();
+        OutBit[] ob = {};
+        OutBitGroup obg = OutBitGroup.from( ob );
+    }
     /**
      * Test mock.
      */
@@ -81,4 +111,5 @@ public class OutBitGroupTest {
             return v;
         }
     }
+    
 }

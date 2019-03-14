@@ -61,7 +61,7 @@ public class SwingPollerTest {
         int invocations = 0;
         int lastUpdaterId;
 
-        public void updateBit(Object b, boolean value) {
+        public void updateBit(Bit b, boolean value) {
             Bit mb = (Bit) b;
             //lastUpdaterId = mb.id;
             invocations++;
