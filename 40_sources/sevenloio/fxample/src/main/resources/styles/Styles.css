@@ -1,0 +1,42 @@
+.button {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    /*-fx-border-color: red;*/
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    /*-fx-font-size: 12px;*/
+    -fx-padding:0;/*10 20 10 20;*/
+    -fx-border-color:#ffffff #666 #666 #ffffff;
+    -fx-border-width: 1 2 2 1;
+    -fx-text-fill: #ccc
+}
+
+
+#root{
+    -fx-base: #000;
+}
+.fake {
+    -fx-base: blue;
+    -fx-text-fill: cyan;
+}
+
+.label{     
+    -fx-text-fill: white;
+}
+
+.hbox hbox #hbox{
+    -fx-border-width: 3px;
+    -fx-border-color: #800;
+    -fx-background-color:white;
+    -fx-opacity: 1.0;
+}
+
+.led-on {
+    -fx-fill: radial-gradient(focus-angle 45deg, focus-distance 20%, center 35% 35%, radius 50%, #ff0, #FF0, #440);
+    -fx-stroke:#880;
+}
+
+.led-off {
+    -fx-fill: radial-gradient(radius 100%, yellow, #660, black);
+    -fx-stroke:#440;
+}
