@@ -304,12 +304,12 @@
             <version>2.0.2-beta</version>
             <scope>test</scope>
         </dependency>
-        <!--        <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>6.12.1</version>
-            <scope>test</scope>
-        </dependency>-->
+        <dependency>
+          <groupId>com.puppycrawl.tools</groupId>
+          <artifactId>checkstyle</artifactId>
+          <version>8.18</version>
+          <scope>test</scope>
+        </dependency>
     </dependencies>
     <modules>
         <!-- <module>build-tools</module> -->
