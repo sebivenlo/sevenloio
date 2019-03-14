@@ -36,7 +36,7 @@ public class ButtonSensor extends InBit {
      * (Object adapter)
      */
     private void connectProperty(){
-        this.addListener(( Object itsMe, boolean newValue ) -> {
+        this.addListener(( Bit itsMe, boolean newValue ) -> {
             status.set(newValue);
         });
     }

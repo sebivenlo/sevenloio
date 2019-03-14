@@ -23,7 +23,7 @@ import nl.fontys.sevenlo.hwio.Output;
  *
  * @author hom
  */
-public class ElevatorBitFactory implements AbstractBitFactory, BitListener {
+public class ElevatorBitFactory implements AbstractBitFactory<Number>, BitListener<Bit> {
 
     private Properties props;
     private final int pinCount;

@@ -4,6 +4,7 @@ import bitfactoryexample.ButtonSensor;
 import elevatorparts.ElevatorMotor;
 import elevatorparts.FloorIndicator;
 import java.util.List;
+import nl.fontys.sevenlo.hwio.Bit;
 import nl.fontys.sevenlo.hwio.BitGroup;
 import nl.fontys.sevenlo.hwio.BitListener;
 
@@ -30,7 +31,7 @@ public class HWFloorIndicator implements FloorIndicator, BitListener {
     }
 
     @Override
-    public void updateBit( Object bit, boolean newValue ) {
+    public void updateBit( Bit bit, boolean newValue ) {
         ButtonSensor sensor = ( ButtonSensor ) bit;
         if ( newValue ) {
 

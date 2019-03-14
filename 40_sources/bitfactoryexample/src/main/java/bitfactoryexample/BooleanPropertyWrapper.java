@@ -1,6 +1,7 @@
 package bitfactoryexample;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import nl.fontys.sevenlo.hwio.Bit;
 import nl.fontys.sevenlo.hwio.BitListener;
 
 /**
@@ -21,7 +22,7 @@ public class BooleanPropertyWrapper extends SimpleBooleanProperty implements Bit
     }
 
     @Override
-    public void updateBit( Object bit, boolean newValue ) {
+    public void updateBit( Bit bit, boolean newValue ) {
         set( newValue );
     }
 
