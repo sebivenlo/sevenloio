@@ -3,14 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>nl.fontys.sevenlo</groupId>
-        <artifactId>parentpom</artifactId>
-        <version>1.2</version>
+        <artifactId>ioparentpom</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
     <groupId>sevenlofxample</groupId>
     <artifactId>fxample</artifactId>
-    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>SEVenlo :: FXample</name>
@@ -30,17 +29,31 @@
         <name>Your Organisation</name>
     </organization>
 
-        <dependencies>
+    <dependencies>
         <dependency>
             <groupId>nl.fontys.sevenlo</groupId>
             <artifactId>sevenlohwio</artifactId>
-            <version>3.2.2</version>
+            <version>${version}</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11.0.2</version>
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11.0.2</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
             <groupId>nl.fontys.sevenlo</groupId>
             <artifactId>sevenloutils</artifactId>
-            <version>1.2</version>
+            <version>${version}</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -52,7 +65,7 @@
         <dependency>
             <groupId>nl.fontys.sevenlo</groupId>
             <artifactId>sevenlowarrior</artifactId>
-            <version>1.7.2</version>
+            <version>${version}</version>
             <type>jar</type>
         </dependency>
     </dependencies>

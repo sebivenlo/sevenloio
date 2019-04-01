@@ -2,16 +2,36 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>nl.fontys.sevenlo</groupId>
-        <artifactId>parentpom</artifactId>
-        <version>1.2</version>
+        <artifactId>ioparentpom</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
     <!--  <groupId>nl.fontys.sevenlo</groupId>-->
     <!-- version  1.1, generic use in Aggregates and BitUpdater -->
     <artifactId>sevenlohwio</artifactId>
-    <version>3.2.2</version>
-    <packaging>jar</packaging>
 
     <name>SEVenlo :: HWIO</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>nl.fontys.sevenlo</groupId>
+            <artifactId>sevenloutils</artifactId>
+            <version>${version}</version>
+        </dependency>
+    </dependencies>
 </project>

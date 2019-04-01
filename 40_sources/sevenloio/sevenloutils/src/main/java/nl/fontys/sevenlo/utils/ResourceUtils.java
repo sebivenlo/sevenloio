@@ -171,7 +171,7 @@ public final class ResourceUtils {
      *
      * The returned value is an integer with a one for each input found at the
      * start of the property value. The pins are named pin
-     * <tt>"^pin\\d+$"</tt> and are searched by this name. The pin is recognized
+     * {@code "^pin\\d+$"} and are searched by this name. The pin is recognized
      * as input when its name starts with "in".
      *
      * @param props properties to search.

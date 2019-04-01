@@ -17,11 +17,19 @@
     <parent>
         <groupId>nl.fontys.sebivenlo</groupId>
         <artifactId>sebipom</artifactId>
-        <version>1.4.4</version>
+        <version>2.0.0-SNAPSHOT</version>
     </parent>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.lib.dir>/usr/share/java</java.lib.dir>
+        <!--<checkstyle.config.location>${project.basedir}/sebivenlo_checks.xml</checkstyle.config.location>-->
+        <checkstyle.config.location>${user.home}/.m2/sebivenlo_checks.xml</checkstyle.config.location>
+        <version>11.0.0-SNAPSHOT</version>
+    </properties>
     <groupId>nl.fontys.sevenlo</groupId>
-    <artifactId>parentpom</artifactId>
-    <version>1.2</version>
+    <artifactId>ioparentpom</artifactId>
+    <version>11.0.0-SNAPSHOT</version>
+    <!-- Java 11 version-->
     <packaging>pom</packaging>
 
     <name>SEVenlo :: ParentPom</name>
@@ -38,13 +46,6 @@
             <url>scpexe://fontysvenlo.org/home/prj32/public_html/sevenloio</url>
         </site>
     </distributionManagement>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.lib.dir>/usr/share/java</java.lib.dir>
-        <!--<checkstyle.config.location>${project.basedir}/sebivenlo_checks.xml</checkstyle.config.location>-->
-        <checkstyle.config.location>${user.home}/.m2/sebivenlo_checks.xml</checkstyle.config.location>
-
-    </properties>
 
     <reporting>
         <plugins>
