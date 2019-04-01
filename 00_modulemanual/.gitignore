@@ -5,3 +5,7 @@
 *.lot
 *.toc
 *.url
+*.blg
+*.lol
+main.out
+main.pdf
