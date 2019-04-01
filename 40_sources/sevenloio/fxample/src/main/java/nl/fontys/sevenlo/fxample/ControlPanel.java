@@ -6,7 +6,6 @@ import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import nl.fontys.sevenlo.hwio.AbstractBitFactory;
 import nl.fontys.sevenlo.hwio.Bit;
 import nl.fontys.sevenlo.hwio.BitAggregate;
 

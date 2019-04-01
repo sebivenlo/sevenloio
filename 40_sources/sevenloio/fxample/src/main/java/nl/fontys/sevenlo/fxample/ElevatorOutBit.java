@@ -61,7 +61,7 @@ public class ElevatorOutBit extends OutBit {
 
     @Override
     public String getName() {
-        return type.toString() + ' ' + floor;//super.getName(); //To change body of generated methods, choose Tools | Templates.
+        return type.toString() + ' ' + floor;
     }
 
 }

@@ -53,7 +53,6 @@ public class FXPoller implements Poller {
             }
         }
         if ( myTask != null ) {
-           // System.out.println( "submittted " + Integer.toHexString( newValue ) + " for " + bitA );
             Platform.runLater( myTask );
         }
     }

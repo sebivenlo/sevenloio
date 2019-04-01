@@ -1,7 +1,7 @@
 package nl.fontys.sevenlo.widgets;
 
 /**
- *
+ * Turns the lights off.
  * @author Pieter van den Hombergh (P dot vandenHombergh at fontys dot nl)
  * @version $Id$
  */

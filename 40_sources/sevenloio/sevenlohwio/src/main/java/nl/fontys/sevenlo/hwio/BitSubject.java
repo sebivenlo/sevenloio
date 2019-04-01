@@ -49,7 +49,7 @@ public interface BitSubject {
      * @param newValue newest value
      */
     //@SuppressWarnings("unchecked")
-    default void updateListeners( Bit bo, boolean newValue ) {
+    default void updateListeners( Object bo, boolean newValue ) {
         for ( BitListener bl : getListeners() ) {
             bl.updateBit( bo, newValue );
         }

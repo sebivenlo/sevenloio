@@ -62,7 +62,7 @@ public class InputBitTest {
 
             boolean v = false;
 
-            public void updateBit(Bit b, boolean newValue) {
+            public void updateBit(Object b, boolean newValue) {
                 v = newValue;
             }
         }

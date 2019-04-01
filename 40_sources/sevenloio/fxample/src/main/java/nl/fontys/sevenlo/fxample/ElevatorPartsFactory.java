@@ -12,7 +12,7 @@ public class ElevatorPartsFactory {
 
     final ElevatorBitFactory bfac;
 
-    public ElevatorPartsFactory( ElevatorBitFactory bfac ) {
+    ElevatorPartsFactory( ElevatorBitFactory bfac ) {
         this.bfac = bfac;
     }
 

@@ -222,6 +222,11 @@ public final class IOWarrior implements BitAggregate<Integer> {
 //                + " shadow=" + shadow;
     }
 
+    /**
+     * Get the string representation.
+     * @return a string
+     */
+    @Override
     public String asString() {
         return this.toString()+", bits: [\n"
                 + Arrays.stream( bit )

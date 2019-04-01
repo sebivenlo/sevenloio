@@ -13,7 +13,7 @@ import nl.fontys.sevenlo.hwio.InBit;
  *
  * @author Pieter van den Hombergh {@code <p.vandenhombergh@fontys.nl>}
  */
-public class ElevatorLed extends HBox implements BitListener {
+class ElevatorLed extends HBox implements BitListener {
 
     private final String lblText;
     private final Label label;
@@ -23,13 +23,13 @@ public class ElevatorLed extends HBox implements BitListener {
         return c;
     };
 
-    public ElevatorLed( String lblText, Supplier<Node> graphics ) {
+    ElevatorLed( String lblText, Supplier<Node> graphics ) {
         this.lblText = lblText;
         this.graphic = graphics.get();
         label = new Label( lblText, this.graphic );
     }
 
-    public ElevatorLed( String lblText ) {
+    ElevatorLed( String lblText ) {
         this( lblText, defaultGraphicProvider );
     }
 

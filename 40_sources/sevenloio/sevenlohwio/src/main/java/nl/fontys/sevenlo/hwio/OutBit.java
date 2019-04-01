@@ -1,7 +1,5 @@
 package nl.fontys.sevenlo.hwio;
 
-import java.util.concurrent.CopyOnWriteArrayList;
-
 /**
  * Output Bitwise with value read-back.
  *

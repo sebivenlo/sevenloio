@@ -411,7 +411,7 @@ public class ShapeButton extends JButton {
      * Set the shape producer.
      * @param sm shapeMaker the maker of the shape
      */
-    public void setShapeMaker(ShapeMaker sm) {
+    public final void setShapeMaker(ShapeMaker sm) {
         if (sm != null) {
             this.shapeMaker = sm;
             doLayout();
@@ -428,6 +428,7 @@ public class ShapeButton extends JButton {
          * @param c for this component.
          * @return the shape.
          */
+        @Override
         public Shape computeShape(Component c) {
             Rectangle bounds = c.getBounds();
             int w = 3 * Math.min(bounds.width, bounds.height) / 4;
@@ -608,6 +609,7 @@ public class ShapeButton extends JButton {
          * @param c the component the shape is computed (scaled) for.
          * @return the shape.
          */
+        @Override
         public Shape computeShape(Component c) {
             Polygon s = new Polygon();
             int h = c.getHeight();
@@ -643,7 +645,7 @@ public class ShapeButton extends JButton {
          * Create a n pointed star.
          * @param n points
          */
-        public StarShapeMaker(int n) {
+        StarShapeMaker(int n) {
             this.points = n;
         }
 

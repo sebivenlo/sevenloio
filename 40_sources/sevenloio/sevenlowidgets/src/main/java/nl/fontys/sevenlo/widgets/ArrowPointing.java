@@ -30,7 +30,7 @@ public enum ArrowPointing {
     private final double angle;
 
     /** Construct a an arrow with an attitude. */
-    private ArrowPointing(double a) {
+    ArrowPointing(double a) {
         angle = a;
     }
 

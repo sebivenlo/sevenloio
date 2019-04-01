@@ -7,6 +7,7 @@ package nl.fontys.sevenlo.hwio;
  * are associated with (connected to) a port at a bit position.
  *
  * @author Pieter van den Hombergh (p.vandenHombergh at fontys dot nl)
+ * @param <X> the type (width in bits) of the io used; choose between Integer or Long.
  */
 public interface AbstractBitFactory<X extends Number> {
 

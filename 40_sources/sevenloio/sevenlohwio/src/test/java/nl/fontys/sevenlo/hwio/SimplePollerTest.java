@@ -43,7 +43,7 @@ public class SimplePollerTest {
     static class MyListener implements BitListener {
         int count=0;
 
-        public void updateBit(Bit b, boolean newValue) {
+        public void updateBit(Object b, boolean newValue) {
             count++;
         }
 

@@ -4,6 +4,7 @@ package nl.fontys.sevenlo.hwio;
  * See AbstractBitFactory.
  *
  * @author Pieter van den Hombergh (P dot vandenHombergh at fontys dot nl)
+ * @param <X> Integer or Long
  */
 public class DefaultBitFactory<X extends Number> implements AbstractBitFactory<X> {
 

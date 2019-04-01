@@ -203,8 +203,8 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
     public void addBitListener( int bitNr, BitListener l ) {
         BitOps bo = getBit( bitNr );
         if ( bo instanceof Bit ) {
-            Bit bit = ( Bit ) bo;
-            bit.addListener( l );
+            Bit b = ( Bit ) bo;
+            b.addListener( l );
         }
     }
 
@@ -217,8 +217,8 @@ public class SimpleBitAggregate implements BitAggregate<Integer> {
     public void removeBitListener( int bitNr, BitListener l ) {
         BitOps bo = getBit( bitNr );
         if ( bo instanceof Bit ) {
-            Bit bit = ( Bit ) bo;
-            bit.removeListener( l );
+            Bit b = ( Bit ) bo;
+            b.removeListener( l );
         }
     }
 

@@ -137,7 +137,7 @@ public final class WarriorTestGUI {
          */
         private final Object myLock = new Object();
         
-        public ReaderWriterSim() {
+       ReaderWriterSim() {
         }
         
         @Override

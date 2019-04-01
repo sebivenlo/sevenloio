@@ -9,6 +9,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+/**
+ * Demo application.
+ * 
+ * @author Pieter van den Hombergh (879417) {@code p.vandenhombergh@fontys.nl}
+ */
 public class MainApp extends Application {
 
     @Override

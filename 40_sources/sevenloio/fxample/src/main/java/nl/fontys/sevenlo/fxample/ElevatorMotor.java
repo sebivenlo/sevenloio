@@ -12,13 +12,17 @@ public class ElevatorMotor {
         STOP( 0b00 ), DOWN( 0b01 ), UP( 0b10 );
         final int bitPattern;
 
-        private Command( int bitPattern ) {
+        Command( int bitPattern ) {
             this.bitPattern = bitPattern;
         }
     };
     final BitGroup bg;
 
-    public ElevatorMotor( BitGroup bg ) {
+    /**
+     * Create a motor using a bit group.
+     * @param bg bit group to use
+     */
+    ElevatorMotor( BitGroup bg ) {
         this.bg = bg;
     }
 

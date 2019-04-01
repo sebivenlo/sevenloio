@@ -1,7 +1,7 @@
 package nl.fontys.sevenlo.widgets;
 
 /**
- *
+ * Pointing button.
  * @author Pieter van den Hombergh (P dot vandenHombergh at fontys dot nl)
  * @version $Id$
  */
@@ -53,7 +53,7 @@ public class ArrowButton extends ShapeButton {
         return direction;
     }
     // Shape cache
-    private ShapeMaker[] shapes = new ShapeMaker[ArrowPointing.values().length];
+    private final ShapeMaker[] shapes = new ShapeMaker[ArrowPointing.values().length];
 
     /**
      * Set pointing dir.

@@ -212,6 +212,9 @@ public final class IOWarriorConnector {
         return sb.toString();
     }
 
+    /**
+     * Close all warriors.
+     */
     public void close() {
         for ( long h : handles ) {
             IowKit.closeDevice( h );

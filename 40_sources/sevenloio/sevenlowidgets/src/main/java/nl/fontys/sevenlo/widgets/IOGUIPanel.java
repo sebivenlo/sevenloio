@@ -26,10 +26,6 @@ public class IOGUIPanel extends JFrame {
 
     private static final long serialVersionUID = 1;
     /**
-     * The which frame
-     */
-
-    /**
      * the input mask, read from the command line.
      */
     private int inputMask = 0xffff;
@@ -102,9 +98,9 @@ public class IOGUIPanel extends JFrame {
      * @param prop properties (labels) to with pins.
      */
     private JComponent createWidgets( Properties prop ) {
-        JPanel panel = new JPanel();
+        JPanel jPanel = new JPanel();
         //p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-        panel.setLayout( new GridLayout( 0, 1 ) );
+        jPanel.setLayout( new GridLayout( 0, 1 ) );
         widget = new JComponent[ Integer.SIZE ]; //warrior.size()];
         int mask = 1;
         WidgetFactory widgetFactory = new WidgetFactory( prop );
@@ -116,13 +112,13 @@ public class IOGUIPanel extends JFrame {
                                      : widgetFactory.createCheckbox( i,
                                     ( Bit ) bitAggregate.getBit( i ) );
 
-            panel.add( wid );
+            jPanel.add( wid );
             Color bgColor = ( 0 == ( i % 2 ) ) ? evenColor : oddColor;
             //lab.setBackground(bgColor);
             wid.setBackground( bgColor );
             mask <<= 1;
         }
-        return panel;
+        return jPanel;
     }
 
 }

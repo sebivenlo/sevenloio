@@ -17,7 +17,7 @@ import static nl.fontys.sevenlo.utils.ResourceUtils.*;
  *
  * @author Pieter van den Hombergh {@code <p.vandenhombergh@fontys.nl>}
  */
-public class ElevatorBitFactory implements AbstractBitFactory<Integer> {
+class ElevatorBitFactory implements AbstractBitFactory<Integer> {
 
     protected final Properties props;
     private final EnumMap<OT, ArrayList<OutBit>> outMap;
@@ -29,7 +29,7 @@ public class ElevatorBitFactory implements AbstractBitFactory<Integer> {
      *
      * @param props to be used in factory algorithm.
      */
-    public ElevatorBitFactory( Properties props ) {
+    ElevatorBitFactory( Properties props ) {
         this.inputMask = getInputMaskFromProperties( props, 32 );
         this.props = props;
         outMap = new EnumMap<>( OT.class );
@@ -61,6 +61,10 @@ public class ElevatorBitFactory implements AbstractBitFactory<Integer> {
         }
     }
 
+    /**
+     * Get the used input mask.
+     * @return the mask.
+     */
     protected int getInputMask() {
         return this.inputMask;
     }
@@ -147,7 +151,7 @@ public class ElevatorBitFactory implements AbstractBitFactory<Integer> {
 
         private final BitAggregate<Integer> bag;
 
-        public InvertingFactory( BitAggregate<Integer> bag, Properties props ) {
+        InvertingFactory( BitAggregate<Integer> bag, Properties props ) {
             super( props );
             this.bag = bag;
         }

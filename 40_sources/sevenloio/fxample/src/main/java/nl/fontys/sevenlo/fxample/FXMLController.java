@@ -15,13 +15,11 @@ import static nl.fontys.sevenlo.fxample.ElevatorMotor.Command.DOWN;
 import static nl.fontys.sevenlo.fxample.ElevatorMotor.Command.STOP;
 import static nl.fontys.sevenlo.fxample.ElevatorMotor.Command.UP;
 import nl.fontys.sevenlo.hwio.BitAggregate;
-import nl.fontys.sevenlo.hwio.BitGroup;
 import nl.fontys.sevenlo.hwio.FXPoller;
 import nl.fontys.sevenlo.hwio.PollThreads;
 import nl.fontys.sevenlo.hwio.Poller;
 import nl.fontys.sevenlo.hwio.IOInverter;
 import nl.fontys.sevenlo.hwio.InBit;
-import nl.fontys.sevenlo.hwio.OutBitGroup;
 import nl.fontys.sevenlo.iowarrior.IOWarrior;
 import nl.fontys.sevenlo.iowarrior.IOWarriorConnector;
 import nl.fontys.sevenlo.utils.ResourceUtils;
@@ -99,13 +97,16 @@ public class FXMLController implements Initializable {
         }
     }
 
-    void connectButton( ElevatorBitFactory f, final ElevatorMotor m, BST buttonType, ElevatorMotor.Command cmd ) {
+    void connectButton( ElevatorBitFactory f, final ElevatorMotor m, 
+            BST buttonType, ElevatorMotor.Command cmd ) {
         InBit doorCloseBtn
                 = f.getInbitsByType( buttonType ).get( 0 );
         doorCloseBtn.addListener( ( bo, v ) -> m.go( cmd ) );
     }
 
-    void connectAndStart( int hcount, Function<Integer, BitAggregate<Integer>> bags, BitAggregate<Integer>[] hardware, ElevatorBitFactory[] bitFactory, HBox hbox ) {
+    void connectAndStart( int hcount, Function<Integer, 
+            BitAggregate<Integer>> bags, BitAggregate<Integer>[] hardware, 
+            ElevatorBitFactory[] bitFactory, HBox hbox ) {
         for ( int w = 0; w < hcount; w++ ) {
             BitAggregate bag = bags.apply( w );
             hardware[ w ] = bag;
@@ -147,7 +148,7 @@ public class FXMLController implements Initializable {
      *
      * @param hardware the hardware to poll.
      */
-    private void start( BitAggregate<Integer>[] hardware ) {
+    void start( BitAggregate<Integer>[] hardware ) {
         for ( BitAggregate<Integer> hw : hardware ) {
             Poller poller = new FXPoller( hw );
             Thread pollThread = PollThreads.createPollThread( poller );

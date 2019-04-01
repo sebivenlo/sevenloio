@@ -2,7 +2,6 @@ package nl.fontys.sevenlo.hwio;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 
 /**
  * Inverter of IO bits: one sides input is the other output. This adapter class
@@ -24,6 +23,7 @@ public class IOInverter implements BitAggregate<Integer> {
 
     /**
      * Create Inverter with BitFactory.
+     *
      * @param inputMask mask
      */
     public IOInverter( int inputMask ) {
@@ -31,8 +31,8 @@ public class IOInverter implements BitAggregate<Integer> {
         outsideAggregate = new PassThroughAggregate( ~inputMask, false );
         insideAggregate.setOther( outsideAggregate );
         outsideAggregate.setOther( insideAggregate );
-        insideAggregate.setPoller( new FXPoller(outsideAggregate));
-        outsideAggregate.setPoller( new FXPoller(insideAggregate));
+        insideAggregate.setPoller( new FXPoller( outsideAggregate ) );
+        outsideAggregate.setPoller( new FXPoller( insideAggregate ) );
     }
 
     @Override
@@ -85,17 +85,15 @@ public class IOInverter implements BitAggregate<Integer> {
         return insideAggregate.lastWritten();
     }
 
-    public void setOther( PassThroughAggregate o ) {
+    /**
+     * Set the opposing aggregate.
+     *
+     * @param o the other
+     */
+    void setOther( PassThroughAggregate o ) {
         insideAggregate.setOther( o );
     }
 
-//    /**
-//     * Create Inverter with DefaultBitFactory.
-//     * @param inputMask  mask
-//     */
-//    public IOInverter(int inputMask) {
-//        this(inputMask, new DefaultBitFactory());
-//    }
     /**
      * @author Pieter van den Hombergh (p.vandenhombergh@fontys.nl)
      */
@@ -111,7 +109,8 @@ public class IOInverter implements BitAggregate<Integer> {
 
         /**
          * Create PassThroughAggregate with BitFactory.
-         * @param im  inputMask
+         *
+         * @param im inputMask
          * @param fac BitFactory
          */
         PassThroughAggregate( int im, boolean left ) {
@@ -128,11 +127,18 @@ public class IOInverter implements BitAggregate<Integer> {
             }
         }
 
-        void setPoller(FXPoller poller) {
-            
-        }/**
+        /**
+         * Sets the poller.
+         * @param aPoller to set
+         */
+        void setPoller( FXPoller aPoller ) {
+            this.poller = aPoller;
+        }
+
+        /**
          * Set connection to other.
-         * @param o
+         *
+         * @param o other
          */
 
         public void setOther( PassThroughAggregate o ) {
@@ -141,6 +147,7 @@ public class IOInverter implements BitAggregate<Integer> {
 
         /**
          * Write combination of mask and value.
+         *
          * @param mask
          * @param value
          */
@@ -158,6 +165,7 @@ public class IOInverter implements BitAggregate<Integer> {
 
         /**
          * Read from other.
+         *
          * @return the value read.
          */
         @Override
@@ -182,6 +190,7 @@ public class IOInverter implements BitAggregate<Integer> {
 
     /**
      * Get the inside aggregate. This has the same setup as a normal aggregate.
+     *
      * @return BitAggregate
      */
     public BitAggregate<Integer> getInside() {
@@ -191,6 +200,7 @@ public class IOInverter implements BitAggregate<Integer> {
     /**
      * Get the outside aggregate. This aggregate can be used to connect to the
      * hardware simulation.
+     *
      * @return the outside aggregate
      */
     public BitAggregate<Integer> getOutside() {

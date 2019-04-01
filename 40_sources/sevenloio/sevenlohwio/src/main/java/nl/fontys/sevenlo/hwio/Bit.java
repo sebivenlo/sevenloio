@@ -23,6 +23,10 @@ public abstract class Bit implements BitOps, BitSubject {
      */
     protected final int bitNr;
 
+    /**
+     * Create a bit for specific bit in io word.
+     * @param bitNr position counting from right to left.
+     */
     public Bit( int bitNr ) {
         this.bitNr = bitNr;
     }
@@ -104,12 +108,17 @@ public abstract class Bit implements BitOps, BitSubject {
         return bitNr;
     }
 
+    @Override
     public CopyOnWriteArrayList<BitListener> getListeners() {
         return listeners;
     }
 
-    void addAllListener( CopyOnWriteArrayList<BitListener> listeners ) {
-        getListeners().addAll( listeners );
+    /**
+     * Add listeners to this bit.
+     * @param someListeners to add.
+     */
+    void addAllListener( CopyOnWriteArrayList<BitListener> someListeners ) {
+        getListeners().addAll( someListeners );
     }
 
 }
