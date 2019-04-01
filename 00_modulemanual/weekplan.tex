@@ -1,8 +1,8 @@
 \renewcommand\TheFile{weekplan.tex}
 \SVN $Author: hom $
-\SVN $Revision: 23 $
-\SVN $Id: weekplan.tex 23 2013-11-08 10:31:58Z hom $
-\SVN $Date: 2013-11-08 11:31:58 +0100 (Fri, 08 Nov 2013) $
+\SVN $Revision: 126 $
+\SVN $Id: weekplan.tex 126 2017-10-24 07:34:14Z hom $
+\SVN $Date: 2017-10-24 09:34:14 +0200 (Tue, 24 Oct 2017) $
 \SVN $State: Exp $
 \begin{savequote}[8cm]
   \sffamily
@@ -33,7 +33,7 @@ The products of this assignment are:
 \end{enumerate}
 
 \subsection{How to deliver your assignment products}
-All electronic products must be handed in via \href{https://www.fontysvenlo.org/peerweb}{peerweb}. See peerweb for all deadlines.
+All electronic products must be handed in via \href{https://peerweb.fontysvenlo.org/}{peerweb}. See peerweb for all deadlines.
 \begin{enumerate}
 \item Report: one document describing your analysis, design and its
   implementation, test installation and user manual to be handed in on
@@ -103,67 +103,128 @@ independent way, create netbeans libraries.
 You get most comfort if you install the libraries complete with source
 and javadoc. 
 
-The names of these libraries and the installation\footnote{The paths
-  used are for Debian/Ubuntu Linux.} steps as netbeans library are:
-{
-\setlength\parsep{0pt}
-\setlength\topsep{0pt}
-\setlength\partopsep{0pt}
-\setlength\parskip{0pt}
-\setlength\itemsep{0pt}
-\newcommand\Classpath{[Classpath]}
-\newcommand\Sources{[Source]}
-\newcommand\Javadoc{[Javadoc]}
-\begin{description}
-\item[CodeMercenaries] The hardware access layer.
-  \begin{description}
-  \item[\Classpath] The library proper is at \Code{/usr/share/java/codemercs.jar}.
-  \item[\Sources] Add the file \Code{/usr/share/java/codemercs-src.jar}.
-  \item[\Javadoc] Add the file \Code{/usr/share/java/codemercs-doc.zip}.
-  \end{description}
-\item[SEVenloHWIO] The bit io abstraction layer. 
-  \begin{description}
-  \item[\Classpath] The library proper is at \Code{/usr/share/java/sevenlohwio.jar}.
-  \item[\Sources] Add the file \Code{/usr/share/java/sevenlohwio-src.jar}.
-  \item[\Javadoc] Add the file \Code{/usr/share/java/sevenlohwio-doc.zip}.
-  \end{description}
-\item[SEVenloWarrior] The bit io abstraction layer. 
-  \begin{description}
-  \item[\Classpath] The library proper is at \Code{/usr/share/java/sevenlowarrior.jar}.
-  \item[\Sources] Add the file \Code{/usr/share/java/sevenlowarrior-src.jar}.
-  \item[\Javadoc] Add the file \Code{/usr/share/java/sevenlowarrior-doc.zip}.
-  \end{description}
-\item[SEVenloWidgets] The gui widgets. 
-  \begin{description}
-  \item[\Classpath] The library proper is at \Code{/usr/share/java/sevenlowidgets.jar}.
-  \item[\Sources] Add the file \Code{/usr/share/java/sevenlowidgets-src.jar}.
-  \item[\Javadoc] Add the file \Code{/usr/share/java/sevenlowidgets-doc.zip}.
-  \end{description}
-\item[SEVenloUtils] The resource utils. 
-  \begin{description}
-  \item[\Classpath] The library proper is at \Code{/usr/share/java/sevenloutils.jar}.
-  \item[\Sources] Add the file \Code{/usr/share/java/sevenloutils-src.jar}.
-  \item[\Javadoc] Add the file \Code{/usr/share/java/sevenloutils-doc.zip}.
-  \end{description}
-\end{description}
-} % end of lengths
-All these libraries can be found at the module website.
+Since 2017, the libraries are built as maven projects. Since April 2019, all sources have moved
+to github at \href{https://github.com/sebivenlo/sevenloio}{SEVenloio at Github}
 
-To ease your getting into the matter, we've added a branch in the
-svnroot parent of the group repositories, url typically
-\url{https://www.fontysvenlo.org/svn/year/svnroot}, 
-having a sub directory containing a maven netbeans project, called
-bitfactoryexample. 
-It is also available on the website in a zip file. You should be able to
-  build and run this project. 
+A maven repository is maintained at \url{https://www.fontysvenlo.org/repository}, which
+you can easily add to your private maven settings by adding said repository to your mavenconfig in the \texttt{\~/.m2/settings.xml} file.
+Make sure your also activate that profile.
 
-The command line way to build it is
-\texttt{mvn compile assembly:single}, which will build a singe jar
-containing all the required libraries. This maven command should pull
-in all the required resources and libraries.
+\begin{lstlisting}[language=xml,caption={settings}]
+<profile>
+  <id>sebivenlo</id>
+  <repositories>
+    <repository>
+       <id>fontysvenlo.org</id>
+       <url>https://www.fontysvenlo.org/repository</url>
+    </repository>
+  </repositories>
+</profile>
+\end{lstlisting}
 
-If you also would like to get the sevenlo libraries described
-above. Checkout the repository \url{https://www.fontysvenlo.org/svn/2016/PRJ32/svnroot}.
+
+Activation can be done as follows in the same settings.xml file:
+
+\begin{lstlisting}[language=xml,caption={activate profile}]
+  <activeProfiles>
+     <activeProfile>sebivenlo</activeProfile>
+  </activeProfiles>
+\end{lstlisting}
+
+The libraries you might want to include in your respository are mentioned in the maven coordinates below:
+
+\begin{lstlisting}[language=xml,caption={All sebivenlo io stuff. Add/adapt version numbers before use.}]
+  <dependency>
+     <groupId>nl.fontys.sevenlo</groupId>
+     <artifactId>sevenloutils</artifactId>
+     <version>1.2</version>
+  </dependency>
+  <dependency>
+     <groupId>nl.fontys.sevenlo</groupId>
+     <artifactId>sevenlohwio</artifactId>
+     <version>3.2.2</version>
+  </dependency>
+  <dependency>
+     <groupId>nl.fontys.sevenlo</groupId>
+     <artifactId>sevenlonetio</artifactId>
+     <version>1.0-SNAPSHOT</version>
+  </dependency>
+  <dependency>
+     <groupId>nl.fontys.sevenlo</groupId>
+     <artifactId>sevenlowarrior</artifactId>
+     <version>1.7.2</version>
+  </dependency>
+  <dependency>
+     <groupId>nl.fontys.sevenlo</groupId>
+     <artifactId>sevenlowidgets</artifactId>
+     <version>1.1</version>
+  </dependency>
+\end{lstlisting}
+
+
+In the git hub repository you canb also find some demo and sample code to get you started.
+
+
+
+
+
+%       The names of these libraries and the installation\footnote{The paths
+%   used are for Debian/Ubuntu Linux.} steps as netbeans library are:
+% {
+% \setlength\parsep{0pt}
+% \setlength\topsep{0pt}
+% \setlength\partopsep{0pt}
+% \setlength\parskip{0pt}
+% \setlength\itemsep{0pt}
+% \newcommand\Classpath{[Classpath]}
+% \newcommand\Sources{[Source]}
+% \newcommand\Javadoc{[Javadoc]}
+% \begin{description}
+% \item[CodeMercenaries] The hardware access layer.
+%   \begin{description}
+%   \item[\Classpath] The library proper is at \Code{/usr/share/java/codemercs.jar}.
+%   \item[\Sources] Add the file \Code{/usr/share/java/codemercs-src.jar}.
+%   \item[\Javadoc] Add the file \Code{/usr/share/java/codemercs-doc.zip}.
+%   \end{description}
+% \item[SEVenloHWIO] The bit io abstraction layer. 
+%   \begin{description}
+%   \item[\Classpath] The library proper is at \Code{/usr/share/java/sevenlohwio.jar}.
+%   \item[\Sources] Add the file \Code{/usr/share/java/sevenlohwio-src.jar}.
+%   \item[\Javadoc] Add the file \Code{/usr/share/java/sevenlohwio-doc.zip}.
+%   \end{description}
+% \item[SEVenloWarrior] The bit io abstraction layer. 
+%   \begin{description}
+%   \item[\Classpath] The library proper is at \Code{/usr/share/java/sevenlowarrior.jar}.
+%   \item[\Sources] Add the file \Code{/usr/share/java/sevenlowarrior-src.jar}.
+%   \item[\Javadoc] Add the file \Code{/usr/share/java/sevenlowarrior-doc.zip}.
+%   \end{description}
+% \item[SEVenloWidgets] The gui widgets. 
+%   \begin{description}
+%   \item[\Classpath] The library proper is at \Code{/usr/share/java/sevenlowidgets.jar}.
+%   \item[\Sources] Add the file \Code{/usr/share/java/sevenlowidgets-src.jar}.
+%   \item[\Javadoc] Add the file \Code{/usr/share/java/sevenlowidgets-doc.zip}.
+%   \end{description}
+% \item[SEVenloUtils] The resource utils. 
+%   \begin{description}
+%   \item[\Classpath] The library proper is at \Code{/usr/share/java/sevenloutils.jar}.
+%   \item[\Sources] Add the file \Code{/usr/share/java/sevenloutils-src.jar}.
+%   \item[\Javadoc] Add the file \Code{/usr/share/java/sevenloutils-doc.zip}.
+%   \end{description}
+% \end{description}
+% } % end of lengths
+% All these libraries can be found at the module website.
+
+% To ease your getting into the matter, we've created a project in GIT,
+% containing a sub directory containing a maven netbeans project, called
+% bitfactoryexample. You can clone it with the coordinates
+% \texttt{git@fontysvenlo.org:2013/prj32m1/g4}. You should be able to
+%   build and run this project. The command line way to build it is
+% \texttt{mvn compile assembly:single}, which will build a singe jar
+% containing all the required libraries. This maven command should pull
+% in all the required resources and libraries.
+
+% If you also would like to get the sevenlo libraries described
+% above. Clone the repository \texttt{git@fontysvenlo.org:2013/prj32m1/g4}.
 
 
 
@@ -200,13 +261,13 @@ However the sources subtree will be tagged each week (see below).
 
 A tag (and a branch) are simple copy commands in subversion. See the
 appropriate documentation in the svnbook at
-\url{http://svnbook.red-bean.com/en/1.5/svn.branchmerge.tags.html}. Use
+\url{http://svnbook.red-bean.com/nightly/en/index.html}. Use
 the appropriate source and destination urls and all is done on the
 server with minimal delay. Being versed at the subversion command line
 is very rewarding here. If not sure, try things first in your
 personal scratch pad repository.
 
-In git, tagging is simple too, See \url{http://git-scm.com/book/en/Git-Basics-Tagging}.
+In git, tagging is simple too, See \url{https://git-scm.com/book/en/v2/Git-Basics-Tagging}.
 
 \paragraph{Tags} Each week the tutors will make a TAG with the name
 pattern TAG\_WEEKx. Other TAGS may be used freely.
@@ -222,20 +283,8 @@ Consider branch names like \Okis{LOGIC\_RELEASE} etc.
 In Git you do not need branches for a local experiment, as long as you
 do not push the incomplete experiment results to the origin.
 
-\paragraph{Final delivery} The final deliveries are: reports in pdf file format 
-maven fat jar. See the instructions how to build the bitfactoryexample
-given earlier.
-Apart from the analysis and design artefacts wa also expect one self
-contained jar file that should be started WITHOUT the IDE.
-
-% \begin{Itemize}
-% \item \textbf{[Codebase]:}  \texttt{User defined (e.g. HTTP Deployment)}, and
-% \item \textbf{[Codebase Preview:]}  \texttt{\scriptsize
-%     http://prj32.fontysvenlo.org/2016/gx\_elevator/dist/launch.jnlp},
-%   substituting x with your group number. Running \texttt{ant jws-run}
-%   with these settings will fail locally, but will produce a correctly populated
-%   \Code{dist} subdirectory.
-% \end{Itemize}
+\paragraph{Final delivery} The final deliveries are: reports in pdf file format and a java
+jar containing all dependencies.
 
 
 \section{Weekly planning}
